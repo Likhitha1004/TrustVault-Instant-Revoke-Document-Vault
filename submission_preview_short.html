@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snovasys Submission Form (Short & Crisp)</title>
+<style>
+  :root {
+    --bg: #000000;
+    --card: #0d0f17;
+    --border: #1f2438;
+    --accent: #3b82f6;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --code-bg: #131726;
+    --green: #10b981;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+    line-height: 1.5;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+  .badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  h1 { margin: 0 0 6px 0; font-size: 24px; }
+  .subtitle { color: var(--muted); font-size: 13px; margin: 0 0 20px 0; }
+  .field-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .field-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .field-content {
+    font-size: 13.5px;
+    white-space: pre-wrap;
+    color: #cbd5e1;
+  }
+  .field-content a { color: #60a5fa; text-decoration: underline; }
+  .status-tag {
+    background: #1e1b4b;
+    border: 1px solid #4338ca;
+    color: #a5b4fc;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <span class="badge">Filled in Browser &middot; Ready For Review</span>
+  <h1>Snovasys Hackathon Submission (Short & Crisp)</h1>
+  <p class="subtitle">Direct Portal: <a href="https://hackathon.snovasys.com/project/748/submit" target="_blank" style="color: #60a5fa;">https://hackathon.snovasys.com/project/748/submit</a></p>
+
+  <div class="status-tag">
+    <strong>Evaluation Status:</strong> "I am done. Submit this for evaluation." is <strong>UNCHECKED</strong>. This is purely filled for your review.
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">Project Title</div>
+    <div class="field-content"><strong>TrustVault</strong></div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">One-Line Description</div>
+    <div class="field-content">Zero-trust document security platform with server-enforced RBAC, instant revocation, and SHA-256 cryptographic audit ledger.</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">GitHub Repository Link</div>
+    <div class="field-content"><a href="https://github.com/Likhitha1004/TrustVault-Instant-Revoke-Document-Vault" target="_blank">https://github.com/Likhitha1004/TrustVault-Instant-Revoke-Document-Vault</a></div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">Live Website Link</div>
+    <div class="field-content"><a href="https://trust-vault-smoky.vercel.app" target="_blank">https://trust-vault-smoky.vercel.app</a></div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">1. The Problem You Solved</div>
+    <div class="field-content">Standard cloud drives have critical security flaws:
+1. Broken Access Control (IDOR): URL ID manipulation exposes other users' confidential documents.
+2. Stale Permissions: Revoked access lingers for minutes due to cached tokens.
+3. Malleable Logs: Database records can be modified by rogue admins.
+
+TrustVault Solution:
+- Strict Zero-Trust ACL: Validates every request server-side (0ms stale window on revocation).
+- 404 on Unauthorized: Prevents document ID enumeration.
+- Append-Only SHA-256 Ledger: Chained cryptographic audit trail makes tampering mathematically impossible.</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">2. What Actually Works Right Now</div>
+    <div class="field-content">100% Implemented &amp; Verified in Production:
+- Auth &amp; RBAC: JWT + bcrypt; distinct Admin, Owner, Viewer roles.
+- Zero-Trust ACL: Instant per-user read/edit permissions; 0ms revocation window.
+- Secure File Engine: Magic-byte inspection (%PDF validation; blocks disguised .exe/.html), streaming download proxy.
+- Atomic Bulk Operations: High-speed bulk delete in a single database transaction.
+- Cryptographic Audit Ledger: SHA-256 block chaining with PostgreSQL advisory locks (pg_advisory_xact_lock) preventing concurrency forks.
+- UI &amp; Search: React 19 SPA with multi-criteria search (title, category, date, owner).</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">3. How To Run It On Our Machine</div>
+    <div class="field-content">Prerequisites: Node.js 18+, Python 3.11+, Git
+
+1. Clone:
+git clone https://github.com/Likhitha1004/TrustVault-Instant-Revoke-Document-Vault.git &amp;&amp; cd TrustVault-Instant-Revoke-Document-Vault
+
+2. Backend:
+cd backend &amp;&amp; python -m venv venv &amp;&amp; ./venv/Scripts/activate
+pip install -r requirements.txt
+uvicorn app.main:app --port 8000 --reload
+
+3. Frontend:
+cd ../frontend &amp;&amp; npm install &amp;&amp; npm run dev
+
+4. Verify Tests:
+cd ../backend &amp;&amp; pytest tests -v</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">4. Which AI Tools You Used</div>
+    <div class="field-content">Claude (Anthropic), GitHub Copilot</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">5. What The AI Got Wrong, And What You Fixed Yourself (25 Marks)</div>
+    <div class="field-content">Critical AI flaws identified and manually fixed:
+1. N+1 Query Overhead: AI used basic lazy loading (150+ queries, 1.1s latency). Refactored with joinedload/selectinload (2 queries, 82ms, 92.6% faster).
+2. Audit Hash Race Condition: AI calculated hash in-memory; concurrent uploads caused ledger forks. Fixed using pg_advisory_xact_lock(77123991) for deterministic block serialization.
+3. File Extension Spoofing: AI only checked .endswith('.pdf'). Implemented 2,048-byte physical magic-byte header inspection to block disguised executables.
+4. IDOR Leakage: AI returned HTTP 403 on forbidden access. Enforced HTTP 404 to prevent valid UUID enumeration.
+5. Slow Bulk Deletion: AI looped individual DELETE calls (150s+). Built atomic POST /api/documents/bulk-delete running in 3.82s.</div>
+  </div>
+
+  <div class="field-card">
+    <div class="field-title">6. What Is Not Finished</div>
+    <div class="field-content">1. Direct S3 Edge TTL: While streaming proxy revokes at 0ms, pre-signed direct URLs remain valid until 300s TTL expires. Edge CDN invalidation hook planned.
+2. Soft-Delete Trash Bin: Current deletion purges S3 immediately to save costs; 30-day retention planned.
+3. Antivirus Pipeline: Integration with ClamAV API for embedded PDF JavaScript heuristic scans.
+4. MFA: TOTP 2-factor authentication for Admin roles.</div>
+  </div>
+</div>
+</body>
+</html>

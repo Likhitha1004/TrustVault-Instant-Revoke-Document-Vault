@@ -1,0 +1,176 @@
+{
+  "functional": {
+    "healthz_endpoint": {
+      "status": "PASS",
+      "evidence": "HTTP 200, latency 6922.8ms"
+    },
+    "readyz_db_connected": {
+      "status": "PASS",
+      "evidence": "HTTP 200, latency 1278.5ms"
+    },
+    "user_registration_roles": {
+      "status": "PASS",
+      "evidence": "Registered admin, owner, viewer"
+    },
+    "user_login_jwt": {
+      "status": "PASS",
+      "evidence": "JWTs issued for all roles"
+    },
+    "auth_me_resolution": {
+      "status": "PASS",
+      "evidence": "Resolved viewer ID: 93a923b1-3563-4f9f-a120-970be5ee1c0e"
+    },
+    "jwt_logout_and_revocation": {
+      "status": "PASS",
+      "evidence": "Logout revokes JWT immediately; subsequent call 401"
+    },
+    "upload_intent_generation": {
+      "status": "PASS",
+      "evidence": "S3 Presigned upload URL generated"
+    },
+    "s3_direct_put": {
+      "status": "PASS",
+      "evidence": "Direct S3 PUT HTTP 200"
+    },
+    "confirm_upload_doc_created": {
+      "status": "PASS",
+      "evidence": "Doc ID 5d987ca7-04ba-484e-a7ee-9d95b4b22e68 created"
+    },
+    "document_search_and_filter": {
+      "status": "PASS",
+      "evidence": "Found 1 docs"
+    },
+    "document_download_307_redirect": {
+      "status": "PASS",
+      "evidence": "HTTP 307 to S3 presigned GET"
+    },
+    "permission_grant": {
+      "status": "PASS",
+      "evidence": "Granted read permission to vie_530202"
+    },
+    "shared_viewer_access": {
+      "status": "PASS",
+      "evidence": "Viewer can read shared document"
+    },
+    "permission_revocation": {
+      "status": "PASS",
+      "evidence": "Revoked permission"
+    },
+    "revoked_viewer_instant_denial": {
+      "status": "PASS",
+      "evidence": "Instant HTTP 404"
+    },
+    "document_patch_metadata": {
+      "status": "PASS",
+      "evidence": "Title & category updated"
+    },
+    "document_soft_delete": {
+      "status": "PASS",
+      "evidence": "Document deleted"
+    },
+    "deleted_document_inaccessible": {
+      "status": "PASS",
+      "evidence": "HTTP 404 on deleted doc"
+    },
+    "admin_metrics_endpoint": {
+      "status": "PASS",
+      "evidence": "Docs: 1, Logs: None"
+    }
+  },
+  "security": {
+    "idor_read_protection": {
+      "status": "PASS",
+      "evidence": "HTTP 404 (zero existence leak)"
+    },
+    "idor_download_protection": {
+      "status": "PASS",
+      "evidence": "HTTP 404 (download denied)"
+    },
+    "idor_delete_protection": {
+      "status": "PASS",
+      "evidence": "HTTP 404 (delete denied)"
+    },
+    "privilege_escalation_verify": {
+      "status": "PASS",
+      "evidence": "HTTP 403 Forbidden on audit verify"
+    },
+    "privilege_escalation_metrics": {
+      "status": "PASS",
+      "evidence": "HTTP 403 Forbidden on audit metrics"
+    },
+    "jwt_tampered_signature": {
+      "status": "PASS",
+      "evidence": "HTTP 401 Unauthorized"
+    },
+    "sql_injection_login": {
+      "status": "PASS",
+      "evidence": "HTTP 401 Unauthorized (safe query)"
+    },
+    "path_traversal_prevention": {
+      "status": "PASS",
+      "evidence": "HTTP 400 Rejected"
+    }
+  },
+  "storage": {
+    "payload_integrity_1KB": {
+      "status": "PASS",
+      "evidence": "1KB (1024 bytes) verified & committed"
+    },
+    "payload_integrity_100KB": {
+      "status": "PASS",
+      "evidence": "100KB (102400 bytes) verified & committed"
+    },
+    "payload_integrity_1MB": {
+      "status": "PASS",
+      "evidence": "1MB (1048576 bytes) verified & committed"
+    },
+    "payload_integrity_4.5MB": {
+      "status": "PASS",
+      "evidence": "4.5MB (4718592 bytes) verified & committed"
+    },
+    "payload_integrity_10MB": {
+      "status": "PASS",
+      "evidence": "10MB (10485760 bytes) verified & committed"
+    },
+    "oversized_11mb_rejected": {
+      "status": "PASS",
+      "evidence": "HTTP 413 Payload Too Large (file exceeds 10MB limit)"
+    }
+  },
+  "concurrency": {
+    "simultaneous_registration_login_10": {
+      "status": "PASS",
+      "evidence": "10/10 succeeded"
+    }
+  },
+  "audit_crypto": {
+    "production_chain_continuity": {
+      "status": "PASS",
+      "evidence": "820 blocks mathematically verified"
+    },
+    "isolated_tamper_detection_logic": {
+      "status": "PASS",
+      "evidence": "Tampering breaks cryptographic chain as expected"
+    }
+  },
+  "performance": {
+    "latency_edge_health": {
+      "status": "PASS",
+      "evidence": "Avg 365.7ms, Range [334.8ms - 409.8ms]"
+    },
+    "latency_db_readiness": {
+      "status": "PASS",
+      "evidence": "Avg 934.1ms, Range [921.9ms - 952.9ms]"
+    },
+    "latency_api_docs": {
+      "status": "PASS",
+      "evidence": "Avg 137.4ms, Range [126.3ms - 148.5ms]"
+    }
+  },
+  "frontend_secrets": {
+    "client_bundle_secret_hygiene": {
+      "status": "PASS",
+      "evidence": "No sensitive backend keys or DB URIs found in client bundle"
+    }
+  }
+}
